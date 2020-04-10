@@ -18,17 +18,19 @@ namespace CarLotSimulator
             //Set the properties for each of the cars
             //Call each of the methods for each car
 
-            Carlot listOfCars = new Carlot();
+            Carlot lot = new Carlot();
 
             Car myFirstCar = new Car();
             myFirstCar.Year = 2005;
             myFirstCar.Make = "Chevy";
             myFirstCar.Model = "Malibu";
             myFirstCar.EngineNoise = "....";
-            myFirstCar.HonkNoise = "beeeep";
+            myFirstCar.HonkNoise = "boop boop";
             myFirstCar.IsDriveable = false ;
 
-            listOfCars.MakeList.Add(myFirstCar);
+            lot.CarList.Add(myFirstCar);
+
+            MakeNoise(myFirstCar);
 
             Car mySecondCar = new Car() 
             {
@@ -40,17 +42,18 @@ namespace CarLotSimulator
                 IsDriveable = true
             };
 
-            listOfCars.MakeList.Add(mySecondCar);
-
-            Car myWifesCar = new Car(1999, "Toyota", "Camry", "putttt", "honk honk", true);
-
-            listOfCars.MakeList.Add(myWifesCar);
-
-            MakeNoise(myFirstCar);
+            lot.CarList.Add(mySecondCar);
 
             MakeNoise(mySecondCar);
 
+            Car myWifesCar = new Car(1999, "Toyota", "Camry", "putttt", "honk honk", true);
+
+            lot.CarList.Add(myWifesCar);
+
+
             MakeNoise(myWifesCar);
+
+            Console.WriteLine("--------------");
 
 
             //*************BONUS*************//
@@ -59,12 +62,18 @@ namespace CarLotSimulator
 
             //*************BONUS X 2*************//
 
+            foreach(var car in lot.CarList)
+            {
+                Console.WriteLine();
+                Console.WriteLine(
+                    $"{car.Year}, {car.Make}, {car.Model}, {car.EngineNoise}, {car.HonkNoise}, {car.IsDriveable}");
+            }
+
             //Create a CarLot class
             //It should have at least one property: a List of cars
             //Instanciate the a Carlot at the beginning of the program and as you create a car add the car to the list.
             //At the end iterate through the list printing each of car's Year, Make, and Model to the console
 
-            PrintAttributes(listOfCars);
         }
 
         public static void MakeNoise(Car car)
@@ -75,18 +84,6 @@ namespace CarLotSimulator
             Console.ReadLine();
         }
 
-        public static void PrintAttributes(Carlot cars)
-        {
-            foreach(Car car in cars)
-            {
-                Console.WriteLine(car.Year);
-                Console.WriteLine(car.Make);
-                Console.WriteLine(car.Model);
-                Console.WriteLine(car.EngineNoise);
-                Console.WriteLine(car.HonkNoise);
-                Console.WriteLine(car.IsDriveable);
-            }
-        }
 
     }
 }
